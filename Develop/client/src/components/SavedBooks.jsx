@@ -1,7 +1,7 @@
 // SavedBooks.jsx
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME } from '../queries';
-import { REMOVE_BOOK } from '../mutations';
+import { GET_ME } from '../../../server/utils/queries';
+import { REMOVE_BOOK } from '../../../server/utils/mutations';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
