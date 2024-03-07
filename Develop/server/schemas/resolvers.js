@@ -29,6 +29,18 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    // Add mutations for saveBook and removeBook here
+    saveBook: async (_, { input }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: input } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new Error('You need to be logged in!');
+    },
     
   },
 };
