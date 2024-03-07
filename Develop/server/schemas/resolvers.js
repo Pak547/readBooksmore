@@ -41,7 +41,17 @@ const resolvers = {
       }
       throw new Error('You need to be logged in!');
     },
-    
+    removeBook: async (_, { bookId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedBooks: { bookId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new Error('You need to be logged in!');
+    }
   },
 };
 module.exports = resolvers;
