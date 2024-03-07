@@ -5,6 +5,10 @@ import Navbar from './components/Navbar';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
 
 function App() {
   return (
